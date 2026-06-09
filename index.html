@@ -1,0 +1,153 @@
+<!DOCTYPE html>
+<html lang="zh-TW">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>背單字軟體</title>
+    <link rel="stylesheet" href="style.css">
+</head>
+<body>
+    <div class="container">
+        <!-- 頂部導航 -->
+        <header class="header">
+            <h1>📚 背單字軟體</h1>
+            <nav>
+                <button class="nav-btn active" data-page="learn">學習</button>
+                <button class="nav-btn" data-page="manage">管理單字</button>
+            </nav>
+        </header>
+
+        <!-- 學習頁面 -->
+        <div id="learn-page" class="page active">
+            <div class="learn-container">
+                <div class="card-wrapper">
+                    <div class="card" id="flashcard">
+                        <div class="card-front">
+                            <div class="card-content">
+                                <h2 id="word-english">Hello</h2>
+                                <p class="card-hint">點擊翻轉卡片</p>
+                            </div>
+                        </div>
+                        <div class="card-back">
+                            <div class="card-content">
+                                <div class="card-section">
+                                    <h3>翻譯</h3>
+                                    <p id="word-translation">你好</p>
+                                </div>
+                                <div class="card-section">
+                                    <h3>詞性</h3>
+                                    <p id="word-pos">感嘆詞</p>
+                                </div>
+                                <div class="card-section">
+                                    <h3>例句</h3>
+                                    <p id="word-example">Hello, my name is John.</p>
+                                </div>
+                                <div class="card-section">
+                                    <h3>字根分析</h3>
+                                    <p id="word-etymology">源自古英語 hāl（健康的）</p>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- 控制按鈕 -->
+                <div class="controls">
+                    <button id="prev-btn" class="btn">← 上一個</button>
+                    <span class="card-counter">
+                        <span id="current-index">1</span> / <span id="total-count">0</span>
+                    </span>
+                    <button id="next-btn" class="btn">下一個 →</button>
+                </div>
+
+                <!-- 統計信息 -->
+                <div class="stats">
+                    <p>已新增單字: <strong id="total-words">0</strong> 個</p>
+                </div>
+            </div>
+        </div>
+
+        <!-- 管理頁面 -->
+        <div id="manage-page" class="page">
+            <div class="manage-container">
+                <h2>新增單字</h2>
+                
+                <form id="word-form" class="word-form">
+                    <div class="form-group">
+                        <label for="input-english">英文單字 *</label>
+                        <div class="input-group">
+                            <input 
+                                type="text" 
+                                id="input-english" 
+                                placeholder="輸入英文單字"
+                                required
+                            >
+                            <button type="button" id="auto-fill-btn" class="btn btn-primary">
+                                🔍 自動填入
+                            </button>
+                        </div>
+                    </div>
+
+                    <div class="form-group">
+                        <label for="input-translation">翻譯 *</label>
+                        <input 
+                            type="text" 
+                            id="input-translation" 
+                            placeholder="輸入中文翻譯"
+                            required
+                        >
+                    </div>
+
+                    <div class="form-group">
+                        <label for="input-pos">詞性</label>
+                        <input 
+                            type="text" 
+                            id="input-pos" 
+                            placeholder="例: 名詞、動詞、形容詞"
+                        >
+                    </div>
+
+                    <div class="form-group">
+                        <label for="input-example">例句</label>
+                        <textarea 
+                            id="input-example" 
+                            placeholder="輸入例句"
+                            rows="3"
+                        ></textarea>
+                    </div>
+
+                    <div class="form-group">
+                        <label for="input-etymology">字根分析</label>
+                        <textarea 
+                            id="input-etymology" 
+                            placeholder="輸入字根分析或詞源"
+                            rows="2"
+                        ></textarea>
+                    </div>
+
+                    <button type="submit" class="btn btn-success">✨ 新增單字</button>
+                </form>
+
+                <!-- 單字列表 -->
+                <div class="words-section">
+                    <h2>已新增的單字</h2>
+                    <div id="words-list" class="words-list">
+                        <!-- 動態生成 -->
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <!-- 加載提示 -->
+    <div id="loading" class="loading-overlay hidden">
+        <div class="spinner"></div>
+        <p>正在從API獲取信息...</p>
+    </div>
+
+    <!-- 消息提示 -->
+    <div id="toast" class="toast hidden"></div>
+
+    <script src="app.js"></script>
+</body>
+</html>
